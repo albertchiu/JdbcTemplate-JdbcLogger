@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'JdbcTemplate-JdbcLogger'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter:1.3.3.RELEASE')
+    compile('org.springframework.boot:spring-boot-starter-aop:1.3.3.RELEASE')
+    compile('org.springframework.boot:spring-boot-starter-jdbc:1.3.3.RELEASE')
+    compile('org.springframework.boot:spring-boot-configuration-processor:1.3.3.RELEASE')
+    compile('com.google.code.gson:gson:2.6.2')
+}
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
